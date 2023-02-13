@@ -1,18 +1,17 @@
 #include "Pitch.h"
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "Constants.h"
 
 Pitch::Pitch(Game* pGame)
     : m_pGame(pGame)
 {
-    
 }
 
 Pitch::~Pitch()
 {
-    
 }
 
 bool Pitch::initialise(sf::Vector2f pitchSize)
@@ -23,7 +22,6 @@ bool Pitch::initialise(sf::Vector2f pitchSize)
 
 void Pitch::update(float deltaTime)
 {
-    
 }
 
 void Pitch::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -31,7 +29,7 @@ void Pitch::draw(sf::RenderTarget &target, sf::RenderStates states) const
     const float LineWidth = 10.f;
     const float LineHeight = 50.f;
     const float Gap = 30.f;
-    
+
     sf::Vector2f size = target.getView().getSize();
     sf::Vector2f cursor((size.x - LineWidth) * 0.5f, 0.f);
     
@@ -44,5 +42,4 @@ void Pitch::draw(sf::RenderTarget &target, sf::RenderStates states) const
         
         cursor.y += LineHeight + Gap;
     }
-    
 }

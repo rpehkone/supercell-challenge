@@ -11,6 +11,8 @@
 #include "ControllerAI.h"
 #include "resources/Resources.h"
 
+#include <filesystem>
+
 Game::Game()
     : m_pPitch(std::make_unique<Pitch>(this))
     , m_pBall(std::make_unique<Ball>(this))
@@ -71,9 +73,8 @@ void Game::update(float deltaTime)
                 m_pBall->fireFromCenter();
                 m_state = State::ACTIVE;
             }
-        }
             break;
-            
+        }
         case State::ACTIVE:
             break;
     }
@@ -91,19 +92,19 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(*m_pPaddles[Side::LEFT].get());
     target.draw(*m_pPaddles[Side::RIGHT].get());
     target.draw(*m_pBall.get());
-    
+
     // draw the score
-    sf::Text leftScore;
-    leftScore.setFont(m_font);
-    leftScore.setString(std::to_string(m_score[Side::LEFT]));
-    leftScore.setFillColor(sf::Color::White);
-    leftScore.setPosition(target.getSize().x*0.25f, 10.f);
-    leftScore.setStyle(sf::Text::Bold);
-    target.draw(leftScore);
-    
-    leftScore.setString(std::to_string(m_score[Side::RIGHT]));
-    leftScore.setPosition(target.getSize().x*0.75f, 10.f);
-    target.draw(leftScore);
+    sf::Text Score;
+    Score.setFont(m_font);
+    Score.setString(std::to_string(m_score[Side::LEFT]));
+    Score.setFillColor(sf::Color::White);
+    Score.setPosition(target.getSize().x*0.25f, 10.f);
+    Score.setStyle(sf::Text::Bold);
+    target.draw(Score);
+
+    Score.setString(std::to_string(m_score[Side::RIGHT]));
+    Score.setPosition(target.getSize().x*0.75f, 10.f);
+    target.draw(Score);
 }
 
 void Game::scoreGoal(Side side)

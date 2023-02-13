@@ -33,7 +33,7 @@ void ControllerAI::update(float deltaTime)
         m_targetLocationY = (rand() % 100)*0.01f * (pitchSize.y-m_pPaddle->getPaddleHeight());
         m_pClock->restart();
     }
-    
+
     const float paddlePositionY = m_pPaddle->getPosition().y;
     const float offsetFromTarget = m_targetLocationY - paddlePositionY;
     if (fabs(offsetFromTarget) > 1.f)
