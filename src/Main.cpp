@@ -1,10 +1,13 @@
 #include <SFML/Graphics.hpp>
-#include <SFML/System/Clock.hpp>
-#include <SFML/System/Time.hpp>
 #include <SFML/OpenGL.hpp>
 #include "Game.h"
 #include <memory>
 #include <iostream>
+
+void draw_wobble(sf::RenderTarget &target, sf::RenderStates states)
+{
+
+}
 
 int main()
 {
@@ -27,8 +30,6 @@ int main()
     backgroundTexture.setSmooth(true);
     sf::Sprite background(backgroundTexture);
 
-
-
     std::unique_ptr<Game> pGame = std::make_unique<Game>();
     if (!pGame->initialise(window.getView().getSize()))
     {
@@ -36,8 +37,7 @@ int main()
         return 1;
     }
     
-    sf::Clock clock;
-    
+
     // run the program as long as the window is open
     while (window.isOpen())
     {
@@ -61,11 +61,11 @@ int main()
                     break;
             }
         }
-        
-        sf::Time elapsedTime = clock.getElapsedTime();
-        clock.restart();
+
+        sf::Time elapsedTime = pGame->clock.getElapsedTime();
+        pGame->clock.restart();
         pGame->update(elapsedTime.asSeconds());
-        
+
         // clear the window with black color
         window.clear(sf::Color::Black);
 
@@ -78,6 +78,6 @@ int main()
         window.draw(*pGame.get());
         window.display();
     }
-    
+
     return 0;
 }

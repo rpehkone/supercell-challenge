@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Time.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
@@ -18,6 +20,8 @@ Game::Game()
     , m_pBall(std::make_unique<Ball>(this))
     , m_state(State::WAITING)
     , m_pClock(std::make_unique<sf::Clock>())
+    , music(std::make_unique<sf::Music>())
+    , wobble(std::make_unique<sf::Shader>())
 {
     m_pPaddles[Side::LEFT] = std::make_unique<Paddle>(this);
     m_pPaddles[Side::RIGHT] = std::make_unique<Paddle>(this);
@@ -49,16 +53,28 @@ bool Game::initialise(sf::Vector2f pitchSize)
         return false;
     if (!m_pBall->initialise())
         return false;
-    
+
     m_pClock->restart();
-    
+
     std::string assetPath = Resources::getAssetPath();
     if (!m_font.loadFromFile(assetPath + "Lavigne.ttf"))
     {
         std::cerr << "Unable to load font" << std::endl;
         return false;
     }
-    
+
+    if (!music->openFromFile("assets/synthwave80s.ogg"))
+    {
+        std::cout << "music failed to load\n";
+    }
+    music->setVolume(2); // reduce the volume
+    music->setLoop(true);
+    music->play();
+
+    if (!wobble->loadFromFile("assets/wobble.frag", sf::Shader::Fragment))
+        ;
+
+
     return true;
 }
 
@@ -92,6 +108,8 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(*m_pPaddles[Side::LEFT].get());
     target.draw(*m_pPaddles[Side::RIGHT].get());
     target.draw(*m_pBall.get());
+
+    // wobble.setUniform("iTime", clock.getElapsedTime().asSeconds());
 
     // draw the score
     sf::Text Score;

@@ -3,6 +3,8 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <memory>
 #include "Constants.h"
 
@@ -40,6 +42,8 @@ public:
     void onKeyPressed(sf::Keyboard::Key key);
     void onKeyReleased(sf::Keyboard::Key key);
     
+    sf::Clock clock;
+
 private:
     std::unique_ptr<Pitch> m_pPitch;
     std::unique_ptr<Ball> m_pBall;
@@ -48,7 +52,12 @@ private:
     
     std::unique_ptr<Paddle> m_pPaddles[2];
     std::unique_ptr<Controller> m_controllers[2];
+
+    std::unique_ptr<sf::Music> music;
+    std::unique_ptr<sf::Shader> wobble;
+
     int m_score[2];
     
     sf::Font m_font;
+
 };
