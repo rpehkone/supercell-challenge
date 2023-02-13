@@ -22,9 +22,6 @@
     <ClCompile Include="D:\source\oma\supercell_challenge\pong\src\Pitch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="D:\source\oma\supercell_challenge\pong\src\resources\ResourcePath.mm">
-      <Filter>src\resources</Filter>
-    </ClCompile>
     <ClCompile Include="D:\source\oma\supercell_challenge\pong\src\resources\Resources.cpp">
       <Filter>src\resources</Filter>
     </ClCompile>
@@ -59,9 +56,6 @@
     </ClInclude>
     <ClInclude Include="D:\source\oma\supercell_challenge\pong\src\Pitch.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\source\oma\supercell_challenge\pong\src\resources\ResourcePath.h">
-      <Filter>src\resources</Filter>
     </ClInclude>
     <ClInclude Include="D:\source\oma\supercell_challenge\pong\src\resources\Resources.h">
       <Filter>src\resources</Filter>

@@ -7,7 +7,7 @@ Id flags:
 The output was:
 0
 MSBuild version 17.4.1+9a89d02ff for .NET Framework
-Build started 13/02/2023 20:36:58.
+Build started 13/02/2023 21:58:38.
 Project "D:\source\oma\supercell_challenge\pong\build\CMakeFiles\3.25.2\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
@@ -33,7 +33,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.34
+Time Elapsed 00:00:01.03
 
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -50,7 +50,7 @@ Id flags:
 The output was:
 0
 MSBuild version 17.4.1+9a89d02ff for .NET Framework
-Build started 13/02/2023 20:36:59.
+Build started 13/02/2023 21:58:40.
 Project "D:\source\oma\supercell_challenge\pong\build\CMakeFiles\3.25.2\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
@@ -76,7 +76,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.89
+Time Elapsed 00:00:00.99
 
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -86,26 +86,26 @@ Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" p
 The CXX compiler identification is MSVC, found in "D:/source/oma/supercell_challenge/pong/build/CMakeFiles/3.25.2/CompilerIdCXX/CompilerIdCXX.exe"
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: D:/source/oma/supercell_challenge/pong/build/CMakeFiles/CMakeScratch/TryCompile-yvskio
+Change Dir: D:/source/oma/supercell_challenge/pong/build/CMakeFiles/CMakeScratch/TryCompile-s0qxvp
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_67ddb.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_3c701.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
   Microsoft (R) C/C++ Optimizing Compiler Version 19.34.31937 for x64
   CMakeCCompilerABI.c
   Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_67ddb.dir\Debug\\" /Fd"cmTC_67ddb.dir\Debug\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCCompilerABI.c"
-  cmTC_67ddb.vcxproj -> D:\source\oma\supercell_challenge\pong\build\CMakeFiles\CMakeScratch\TryCompile-yvskio\Debug\cmTC_67ddb.exe
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_3c701.dir\Debug\\" /Fd"cmTC_3c701.dir\Debug\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCCompilerABI.c"
+  cmTC_3c701.vcxproj -> D:\source\oma\supercell_challenge\pong\build\CMakeFiles\CMakeScratch\TryCompile-s0qxvp\Debug\cmTC_3c701.exe
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: D:/source/oma/supercell_challenge/pong/build/CMakeFiles/CMakeScratch/TryCompile-b5ev75
+Change Dir: D:/source/oma/supercell_challenge/pong/build/CMakeFiles/CMakeScratch/TryCompile-oexp3h
 
-Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_137bc.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
+Run Build Command(s):C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe cmTC_b4cb2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:m && MSBuild version 17.4.1+9a89d02ff for .NET Framework
   Microsoft (R) C/C++ Optimizing Compiler Version 19.34.31937 for x64
   CMakeCXXCompilerABI.cpp
   Copyright (C) Microsoft Corporation.  All rights reserved.
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_137bc.dir\Debug\\" /Fd"cmTC_137bc.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_137bc.vcxproj -> D:\source\oma\supercell_challenge\pong\build\CMakeFiles\CMakeScratch\TryCompile-b5ev75\Debug\cmTC_137bc.exe
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_b4cb2.dir\Debug\\" /Fd"cmTC_b4cb2.dir\Debug\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.25\Modules\CMakeCXXCompilerABI.cpp"
+  cmTC_b4cb2.vcxproj -> D:\source\oma\supercell_challenge\pong\build\CMakeFiles\CMakeScratch\TryCompile-oexp3h\Debug\cmTC_b4cb2.exe
 
 
 

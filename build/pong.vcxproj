@@ -277,8 +277,6 @@
     <ClInclude Include="D:\source\oma\supercell_challenge\pong\src\Paddle.h" />
     <ClCompile Include="D:\source\oma\supercell_challenge\pong\src\Pitch.cpp" />
     <ClInclude Include="D:\source\oma\supercell_challenge\pong\src\Pitch.h" />
-    <ClInclude Include="D:\source\oma\supercell_challenge\pong\src\resources\ResourcePath.h" />
-    <ClCompile Include="D:\source\oma\supercell_challenge\pong\src\resources\ResourcePath.mm" />
     <ClCompile Include="D:\source\oma\supercell_challenge\pong\src\resources\Resources.cpp" />
     <ClInclude Include="D:\source\oma\supercell_challenge\pong\src\resources\Resources.h" />
     <ClInclude Include="D:\source\oma\supercell_challenge\pong\libs\SFML\win\include\SFML\Audio.hpp" />

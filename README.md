@@ -1,29 +1,24 @@
-# Supercell Coding Test
-Hi! This is the base code structure for the Supercell coding test.
-The code below is a very basic and intensionally broken version of the class game [**PONG**](https://en.wikipedia.org/wiki/Pong).
-## Info
-This C++ code base is built using  [SFML](https://www.sfml-dev.org/index.php) and is configured to generate XCode and Visual Studio projects.
-> The libraries for SFML are embedded in the repo so shouldn't require any further setup or downloading from the the SFML website.
+building: `cmake -B./build -G"Visual Studio 17 2022"`  
 
-[CMake](https://cmake.org/) version 3.22 or later is required to generate the projects.  
->The project is configured for a limited purpose (i.e. to generate an XCode or VS project easily).  It is not setup to build within CMake or be installed etc.
+ball velocity increases on every bounce  
+2 balls are spawned after 4 rounds  
 
-## How to generate project files
+application has second thread running and spamming fast fourier transform on audio buffer  
+and some frequency is visualized on window edge  
 
-### Visual Studio 2022
-One you have the project cloned to your PC.  Open a command prompt and from the source code directory run:
-`cmake -B./build -G"Visual Studio 17 2022"`
+ai has improved reaction time the more player is in lead  
+ai cant understand wall bounces and this is solved by increased AiPaddleSpeed  
 
-Open `hive_test.sln` from `/build`
+some files from:  
+Music by  
+	https://pixabay.com/users/alexiaction-26977400  
+	https://pixabay.com/music/synthwave-80s-synthwave-game-music-112662/  
 
-### Visual Studio 2019
-One you have the project cloned to your PC.  Open a command prompt and from the source code directory run:
-`cmake -B./build -G"Visual Studio 16 2019"`
+fan art of barbarian and archer  
+	https://www.deviantart.com/omend4/art/ClashofClans-359783539  
+fan art of pekka  
+	https://www.papyswarriors.com/album-photos/fun/fan-arts/fan-art-pekka-chen2015-clash-of-clans.html  
+edited in photoshop  
 
-Open `hive_test.sln` from `/build`
-
-### XCode
-One you have the project cloned to your MAC.  Open a terminal and from the source code directory run:
-`cmake -B./build -GXcode`
-
-Open `hive_test.xcodeproj` from `/build`
+AudioVisual.h source file from this guy:  
+https://github.com/nabil-k/Audio-Visualizer/blob/master/Audio-Visualizer/Audio.h  

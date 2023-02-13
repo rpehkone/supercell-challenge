@@ -1,2 +1,7 @@
-﻿  Resources.cpp
+﻿  Ball.cpp
+  ControllerAI.cpp
+  Game.cpp
+  Main.cpp
+  Paddle.cpp
+  Generating Code...
   pong.vcxproj -> D:\source\oma\supercell_challenge\pong\build\bin\Debug\pong.exe

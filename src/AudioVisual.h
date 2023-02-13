@@ -53,7 +53,7 @@ public:
 			samples = buffer.getSamples();
 			sampleSize = buffer.getSampleCount();
 			singleChannelSize = (int)sampleSize / 2;
-			song.setVolume(2);
+			song.setVolume(10);
 			song.setLoop(true);
 			song.play();
 		}
