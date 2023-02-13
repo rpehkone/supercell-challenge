@@ -1,2 +1,0 @@
-D:/source/oma/supercell_challenge/pong/build/CMakeFiles/pong.dir
-D:/source/oma/supercell_challenge/pong/build/CMakeFiles/ALL_BUILD.dir
