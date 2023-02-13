@@ -71,7 +71,10 @@ void Ball::update(float deltaTime)
 	else if (in_collision)
 	{
 		in_collision = false;
+		//increase velocity on paddle bounce
 		VecMul(m_velocity, 1.05f);
+		//add random variation to bounce direction
+		m_velocity.y += RandFloat(50.0);
 	}
 
 	// set the position and check for a goal
@@ -106,8 +109,7 @@ void Ball::fireFromCenter()
 	sf::Vector2f pitchSize = m_pGame->getPitch()->getPitchSize();
 	setPosition(pitchSize * 0.5f);
 
-	// choose random direction
-	float randomAngle = (rand() % 1000) * 0.001f * 3.14159265359f * 2.f;
-	m_velocity.x = sinf(randomAngle) * FiringSpeed;
-	m_velocity.y = cosf(randomAngle) * FiringSpeed;
+	m_velocity.x = 500.0f;
+	m_velocity.y = RandFloat(1000.0f);
+	VecSetLen(m_velocity, FiringSpeed);
 }

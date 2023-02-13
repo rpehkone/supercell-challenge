@@ -34,7 +34,7 @@ void Pitch::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	while (cursor.y < size.y)
 	{
 		sf::RectangleShape rectangle(sf::Vector2f(LineWidth, LineHeight));
-		rectangle.setFillColor(sf::Color::White);
+		rectangle.setFillColor(sf::Color(0xff, 0xff, 0xff, 0x40));
 		rectangle.setPosition(cursor.x, cursor.y);
 		target.draw(rectangle);
 
