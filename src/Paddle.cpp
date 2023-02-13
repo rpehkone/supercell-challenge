@@ -13,9 +13,10 @@ Paddle::~Paddle()
 {
 }
 
-bool Paddle::initialise(Side side)
+bool Paddle::initialise(Side side, uint32_t color)
 {
 	m_side = side;
+	m_color = color;
 
 	const sf::Vector2f &pitchSize = m_pGame->getPitch()->getPitchSize();
 	const float XPosition = (m_side == Side::LEFT) ? PaddleOffsetFromEdge : pitchSize.x - PaddleOffsetFromEdge - PaddleWidth;
@@ -31,7 +32,7 @@ void Paddle::update(float deltaTime)
 void Paddle::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	sf::RectangleShape paddleRect(sf::Vector2f(PaddleWidth, PaddleHeight));
-	paddleRect.setFillColor(sf::Color::White);
+	paddleRect.setFillColor(sf::Color(m_color));
 	paddleRect.setPosition(getPosition());
 	target.draw(paddleRect);
 }
@@ -44,6 +45,11 @@ sf::FloatRect Paddle::getRect() const
 float Paddle::getPaddleHeight() const
 {
 	return PaddleHeight;
+}
+
+uint32_t Paddle::getPaddleColor() const
+{
+	return m_color;
 }
 
 void Paddle::move(float yDelta)

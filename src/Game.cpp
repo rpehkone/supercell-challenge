@@ -35,9 +35,9 @@ bool Game::initialise(sf::Vector2f pitchSize)
 	if (!m_pPitch->initialise(pitchSize))
 		return false;
 
-	if (!m_pPaddles[Side::LEFT]->initialise(Side::LEFT))
+	if (!m_pPaddles[Side::LEFT]->initialise(Side::LEFT, 0x0daa25aa))
 		return false;
-	if (!m_pPaddles[Side::RIGHT]->initialise(Side::RIGHT))
+	if (!m_pPaddles[Side::RIGHT]->initialise(Side::RIGHT, 0x960da5aa))
 		return false;
 	if (!m_controllers[Side::LEFT]->initialise())
 		return false;
@@ -98,7 +98,6 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	target.draw(*m_pPitch.get());
 	target.draw(*m_pPaddles[Side::LEFT].get());
 	target.draw(*m_pPaddles[Side::RIGHT].get());
-	target.draw(*m_pBall.get());
 
 	// wobble.setUniform("iTime", clock.getElapsedTime().asSeconds());
 
@@ -111,14 +110,16 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	Score.setCharacterSize(100);
 
 	Score.setPosition(center - 150, 10.f);
-	Score.setFillColor(sf::Color(0xffffff50));
+	Score.setFillColor(sf::Color(m_pPaddles[Side::LEFT]->getPaddleColor()));
 	Score.setString(std::to_string(m_score[Side::LEFT]));
 	target.draw(Score);
 
 	Score.setPosition(center + 90, 10.f);
-	Score.setFillColor(sf::Color(0xffffff50));
+	Score.setFillColor(sf::Color(m_pPaddles[Side::RIGHT]->getPaddleColor()));
 	Score.setString(std::to_string(m_score[Side::RIGHT]));
 	target.draw(Score);
+
+	target.draw(*m_pBall.get());
 }
 
 void Game::scoreGoal(Side side)

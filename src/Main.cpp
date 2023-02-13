@@ -15,20 +15,16 @@ int main()
 
 	sf::Image icon;
 	icon.loadFromFile("assets/pong_icon.jpg");
-	// Request a 24-bits depth buffer when creating the window
 	sf::ContextSettings contextSettings;
 	contextSettings.depthBits = 24;
 	contextSettings.sRgbCapable = sRgb;
-	// sf::RenderWindow window(sf::VideoMode(1024, 768), "Pong 2077");
-	sf::RenderWindow window(sf::VideoMode(1000, 600), "Pong 3");
+	sf::RenderWindow window(sf::VideoMode(1000, 600), "Pong", sf::Style::Titlebar | sf::Style::Close);
+
 	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 	window.setFramerateLimit(60);
 	window.setKeyRepeatEnabled(false);
 
-	// Create a sprite for the background
 	sf::Texture backgroundTexture;
-	// if (!backgroundTexture.loadFromFile("assets/texture.jpg"))
-	// if (!backgroundTexture.loadFromFile("assets/clash-of-clans-artwork.jpg"))
 	if (!backgroundTexture.loadFromFile("assets/background_art.png"))
 	{
 		std::cout << "failed to load background";
