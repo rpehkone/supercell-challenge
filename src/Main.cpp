@@ -5,6 +5,7 @@
 #include <memory>
 #include <array>
 
+#include "resources/Resources.h"
 #include "MathUtils.h"
 #include "Game.h"
 
@@ -43,7 +44,8 @@ int main()
 	bool sRgb = false;
 
 	sf::Image icon;
-	icon.loadFromFile("assets/pong_icon.jpg");
+	std::string assetPath = Resources::getAssetPath();
+	icon.loadFromFile(assetPath + "pong_icon.jpg");
 	sf::ContextSettings contextSettings;
 	contextSettings.depthBits = 24;
 	contextSettings.sRgbCapable = sRgb;
@@ -54,7 +56,7 @@ int main()
 	window.setKeyRepeatEnabled(false);
 
 	sf::Texture backgroundTexture;
-	if (!backgroundTexture.loadFromFile("assets/background_art.png"))
+	if (!backgroundTexture.loadFromFile(assetPath + "background_art.png"))
 	{
 		std::cout << "failed to load background";
 		exit(-1);

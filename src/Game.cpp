@@ -64,29 +64,11 @@ bool Game::initialise(sf::Vector2f pitchSize)
 		std::cerr << "Unable to load font" << std::endl;
 		return false;
 	}
-
-	// if (!wobble->loadFromFile("assets/wobble.frag", sf::Shader::Fragment))
-	// 	;
-
 	return true;
 }
 
 void Game::update(float deltaTime)
 {
-	// std::vector< std::vector <double> >& frequencyVisualizationVector = m_audioVisual.getfrequencyVisualizationVector();
-	// double songPlayingOffset = m_audioVisual.getSongPlayingOffset();
-	// int frequencyFrame = (int)(songPlayingOffset * 30);
-	// double this_freq = 0;
-	// int asd = 3;
-	// std::cout << this_freq << "\n";
-	// if (frequencyFrame < frequencyVisualizationVector.size())
-	// {
-	// 	this_freq = frequencyVisualizationVector[frequencyFrame][asd] * -1;
-	// 	// for (int a = 0; a < 5; a++)
-	// 	// for (int b = 0; b < 5; b++)
-	// 	// 	std::cout << frequencyVisualizationVector[a][b] << " f\n";
-	// }
-
 	switch (m_state)
 	{
 	case State::WAITING:

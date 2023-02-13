@@ -14,6 +14,6 @@ std::string Resources::getAssetPath()
 #else
 	char buf[256];
 	GetCurrentDirectoryA(256, buf);
-	return std::string(buf)  + "\\assets" + '\\';
+	return std::string(buf) + "\\";
 #endif
 }

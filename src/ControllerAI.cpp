@@ -45,7 +45,7 @@ void ControllerAI::update(float deltaTime)
 		int ballidx = 0;
 		if (game->m_numBalls == 2)
 		{
-			//find witch ball is closer to ai
+			//find which ball is closer to ai
 			const sf::Vector2f &bpos1 = game->getBall(0)->getPos();
 			const sf::Vector2f &bpos2 = game->getBall(1)->getPos();
 			if (bpos1.x < bpos2.x)

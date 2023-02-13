@@ -14,6 +14,8 @@
 #include <thread>
 #include <ctime>
 
+#include "resources/Resources.h"
+
 class AudioVisual
 {
 	sf::Clock clock;
@@ -37,8 +39,9 @@ class AudioVisual
 public:
 	void initialize()
 	{
+		std::string assetPath = Resources::getAssetPath();
 
-		if (!buffer.loadFromFile("assets/synthwave80s.ogg"))
+		if (!buffer.loadFromFile(assetPath + "synthwave80s.ogg"))
 		{
 			std::cout << "Couldn't load buffer" << std::endl;
 		}
