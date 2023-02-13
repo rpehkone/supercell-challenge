@@ -1,5 +1,6 @@
 #pragma once
 
+const float backgroundMoveAmount = 80.0f;
 const float BallRadius = 16.f;
 const std::size_t BallPoints = 32;
 const float FiringSpeed = 400.0f;

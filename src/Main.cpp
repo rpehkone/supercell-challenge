@@ -7,7 +7,9 @@
 
 #include "resources/Resources.h"
 #include "MathUtils.h"
+#include "Constants.h"
 #include "Game.h"
+#include "Ball.h"
 
 void draw_visualizer(sf::RenderWindow& window, double freq[64])
 {
@@ -42,13 +44,31 @@ int main()
 	window.setKeyRepeatEnabled(false);
 
 	sf::Texture backgroundTexture;
-	if (!backgroundTexture.loadFromFile(assetPath + "background_art.png"))
+	if (!backgroundTexture.loadFromFile(assetPath + "background.png"))
 	{
 		std::cout << "failed to load background";
 		exit(-1);
 	}
 	backgroundTexture.setSmooth(true);
 	sf::Sprite background(backgroundTexture);
+
+	sf::Texture playerTexture;
+	if (!playerTexture.loadFromFile(assetPath + "player.png"))
+	{
+		std::cout << "failed to load background";
+		exit(-1);
+	}
+	playerTexture.setSmooth(true);
+	sf::Sprite playerSprite(playerTexture);
+
+	sf::Texture aiTexture;
+	if (!aiTexture.loadFromFile(assetPath + "ai.png"))
+	{
+		std::cout << "failed to load background";
+		exit(-1);
+	}
+	aiTexture.setSmooth(true);
+	sf::Sprite aiSprite(aiTexture);
 
 	std::unique_ptr<Game> pGame = std::make_unique<Game>();
 	if (!pGame->initialise(window.getView().getSize()))
@@ -75,7 +95,7 @@ int main()
 		double this_freq[64];
 		for (int i = 0; i < 64; i++)
 		{
-			if (frequencyFrame < frequencyVisualizationVector.size())
+			if (frequencyFrame + i < frequencyVisualizationVector.size())
 				this_freq[i] = frequencyVisualizationVector[frequencyFrame][i] * -1;
 			this_freq[i] /= 150.0f;
 			this_freq[i] = min(this_freq[i], 1.0f);
@@ -112,10 +132,30 @@ int main()
 		window.clear(sf::Color::Black);
 
 		sf::Vector2f winsize = (sf::Vector2f)window.getView().getSize();
+		winsize.x /= background.getLocalBounds().width - backgroundMoveAmount * 2.0f;
+		winsize.y /= background.getLocalBounds().height - backgroundMoveAmount * 2.0f;
+		background.setScale(winsize);
+		winsize = (sf::Vector2f)window.getView().getSize();
+		const sf::Vector2f &bpos = pGame->getBall(0)->getPos();
+		sf::Vector2f offset = bpos;
+		VecDiv(offset, winsize);
+		offset.x -= 1.0;
+		offset.y -= 1.0;
+		VecMul(offset, backgroundMoveAmount);
+		background.setPosition(offset);
+		window.draw(background);
+
+		winsize = (sf::Vector2f)window.getView().getSize();
 		winsize.x /= background.getLocalBounds().width;
 		winsize.y /= background.getLocalBounds().height;
-		background.setScale(winsize);
-		window.draw(background);
+		playerSprite.setScale(winsize);
+		aiSprite.setScale(winsize);
+		offset.x /= 10.0f;
+		playerSprite.setPosition(sf::Vector2f(offset.x, 0));
+		aiSprite.setPosition(sf::Vector2f(offset.x, 0));
+		window.draw(playerSprite);
+		window.draw(aiSprite);
+
 		draw_visualizer(window, this_freq);
 
 		window.draw(*pGame.get());

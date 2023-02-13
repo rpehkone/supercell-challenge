@@ -24,6 +24,12 @@ inline void VecMul(sf::Vector2f &a, float f)
 	a.y *= f;
 }
 
+inline void VecDiv(sf::Vector2f &a, sf::Vector2f b)
+{
+	a.x /= b.x;
+	a.y /= b.y;
+}
+
 inline void VecNormalize(sf::Vector2f &a)
 {
 	float	w;
