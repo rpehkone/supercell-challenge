@@ -49,7 +49,7 @@ public:
 			// Original sample (unsplit: the samples holding the left and right channels)
 			samples = buffer.getSamples();
 			sampleSize = buffer.getSampleCount();
-			singleChannelSize = sampleSize / 2;
+			singleChannelSize = (int)sampleSize / 2;
 			song.setVolume(2);
 			song.setLoop(true);
 			song.play();
@@ -188,7 +188,7 @@ public:
 	// Cool-Tukey FFT algorithim
 	std::vector<std::complex<double>> FFT(std::vector<std::complex<double>> &samples)
 	{
-		int N = samples.size();
+		int N = (int)samples.size();
 
 		if (N == 1)
 		{
@@ -229,7 +229,7 @@ public:
 	// Calculates the magnitude from freq bins
 	std::vector<double> FFT_Magnitude(std::vector<std::complex<double>> complexVector)
 	{
-		int samplingFrequency = complexVector.size();
+		int samplingFrequency = (int)complexVector.size();
 
 		std::vector<std::complex<double>>::const_iterator first = complexVector.begin();
 		std::vector<std::complex<double>>::const_iterator last = complexVector.begin() + (complexVector.size() / 2);
@@ -242,7 +242,6 @@ public:
 		for (int frequency = 0; frequency < complexVector_NyquistLimited.size(); frequency++)
 		{
 
-			double magnitude_scaled;
 			double magnitude_scaled_avg;
 
 			// Calculates magnitude from freq bin
@@ -286,14 +285,14 @@ public:
 	void averageOverlapWindows(std::vector<std::vector<double>> frequencyWindowMagnitudes)
 	{
 
-		int window = frequencyWindowMagnitudes.size() - 1;
+		int window = (int)frequencyWindowMagnitudes.size() - 1;
 
 		std::vector<double> firstWindow = frequencyWindowMagnitudes[window - 2];
 		std::vector<double> secondWindow = frequencyWindowMagnitudes[window - 1]; // the overlapping window
 		std::vector<double> thirdWindow = frequencyWindowMagnitudes[window];
 
 		// Gets the averages of the overlapping first and second window and replaces the original firstWindow values with those averages
-		for (int freq = firstWindow.size() / 2; freq < firstWindow.size(); freq++)
+		for (int freq = (int)firstWindow.size() / 2; freq < firstWindow.size(); freq++)
 		{
 			double avgFreq = (firstWindow[freq] + secondWindow[freq]) / 2;
 			firstWindow[freq] = avgFreq;

@@ -126,19 +126,19 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	// wobble.setUniform("iTime", clock.getElapsedTime().asSeconds());
 
 	// draw the score
-	int center = target.getSize().x / 2.0;
+	int center = (int)target.getSize().x / 2;
 
 	sf::Text Score;
 	Score.setFont(m_font);
 	Score.setStyle(sf::Text::Bold);
 	Score.setCharacterSize(100);
 
-	Score.setPosition(center - 150, 10.f);
+	Score.setPosition(center - 150.0f, 10.f);
 	Score.setFillColor(sf::Color(m_pPaddles[Side::LEFT]->getPaddleColor()));
 	Score.setString(std::to_string(m_score[Side::LEFT]));
 	target.draw(Score);
 
-	Score.setPosition(center + 90, 10.f);
+	Score.setPosition(center + 90.0f, 10.f);
 	Score.setFillColor(sf::Color(m_pPaddles[Side::RIGHT]->getPaddleColor()));
 	Score.setString(std::to_string(m_score[Side::RIGHT]));
 	target.draw(Score);

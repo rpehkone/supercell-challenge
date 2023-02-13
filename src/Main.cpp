@@ -12,24 +12,26 @@ void draw_visualizer(sf::RenderWindow& window, double freq[4])
 {
 	sf::RectangleShape rectangle;
 	rectangle.setFillColor(sf::Color(0x41034480));
+	float maxMove = 50.0f;
+	float size;
 
-	float size = 50.0 * freq[0];
-	rectangle.setSize(sf::Vector2f(window.getSize().x, -size));
+	size = maxMove * (float)freq[0];
+	rectangle.setSize(sf::Vector2f((float)window.getSize().x, -size));
 	rectangle.setPosition(0, 0);
 	window.draw(rectangle);
 
-	size = 50.0 * freq[3];
-	rectangle.setSize(sf::Vector2f(window.getSize().x, size));
-	rectangle.setPosition(0, window.getSize().y);
+	size = maxMove * (float)freq[3];
+	rectangle.setSize(sf::Vector2f((float)window.getSize().x, size));
+	rectangle.setPosition(0, (float)window.getSize().y);
 	window.draw(rectangle);
 
 /*
-	size = 50.0 * freq[2];
+	size = maxMove * (float)freq[2];
 	rectangle.setSize(sf::Vector2f(-size, window.getSize().y));
 	rectangle.setPosition(0, 0);
 	window.draw(rectangle);
 
-	size = 50.0 * freq[3];
+	size = maxMove * (float)freq[3];
 	rectangle.setSize(sf::Vector2f(size, window.getSize().y));
 	rectangle.setPosition(window.getSize().x, 0);
 	window.draw(rectangle);
