@@ -10,6 +10,6 @@ const float PaddleMoveSpeed = 300;
 
 enum Side
 {
-    LEFT = 0,
-    RIGHT
+	LEFT = 0,
+	RIGHT
 };
