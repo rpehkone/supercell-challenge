@@ -13,35 +13,28 @@
 #include "Game.h"
 #include "Ball.h"
 
-
 Game::Game()
-	: m_pPitch(std::make_unique<Pitch>(this))
-	, m_pBall(std::make_unique<Ball>(this))
-	, m_state(State::WAITING)
-	, m_pClock(std::make_unique<sf::Clock>())
-	, music(std::make_unique<sf::Music>())
-	, wobble(std::make_unique<sf::Shader>())
+	: m_pPitch(std::make_unique<Pitch>(this)), m_pBall(std::make_unique<Ball>(this)), m_state(State::WAITING), m_pClock(std::make_unique<sf::Clock>()), music(std::make_unique<sf::Music>()), wobble(std::make_unique<sf::Shader>())
 {
 	m_pPaddles[Side::LEFT] = std::make_unique<Paddle>(this);
 	m_pPaddles[Side::RIGHT] = std::make_unique<Paddle>(this);
-	
+
 	m_controllers[Side::LEFT] = std::make_unique<ControllerInput>(this, m_pPaddles[0].get());
 	m_controllers[Side::RIGHT] = std::make_unique<ControllerAI>(this, m_pPaddles[1].get());
-	
+
 	m_score[Side::LEFT] = 0;
 	m_score[Side::RIGHT] = 0;
 }
 
 Game::~Game()
 {
-	
 }
 
 bool Game::initialise(sf::Vector2f pitchSize)
 {
 	if (!m_pPitch->initialise(pitchSize))
 		return false;
-	
+
 	if (!m_pPaddles[Side::LEFT]->initialise(Side::LEFT))
 		return false;
 	if (!m_pPaddles[Side::RIGHT]->initialise(Side::RIGHT))
@@ -73,7 +66,6 @@ bool Game::initialise(sf::Vector2f pitchSize)
 	if (!wobble->loadFromFile("assets/wobble.frag", sf::Shader::Fragment))
 		;
 
-
 	return true;
 }
 
@@ -81,17 +73,17 @@ void Game::update(float deltaTime)
 {
 	switch (m_state)
 	{
-		case State::WAITING:
+	case State::WAITING:
+	{
+		if (m_pClock->getElapsedTime().asSeconds() >= 3.f)
 		{
-			if (m_pClock->getElapsedTime().asSeconds() >= 3.f)
-			{
-				m_pBall->fireFromCenter();
-				m_state = State::ACTIVE;
-			}
-			break;
+			m_pBall->fireFromCenter();
+			m_state = State::ACTIVE;
 		}
-		case State::ACTIVE:
-			break;
+		break;
+	}
+	case State::ACTIVE:
+		break;
 	}
 	m_pPitch->update(deltaTime);
 	m_pPaddles[Side::LEFT]->update(deltaTime);
@@ -115,12 +107,12 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	Score.setFont(m_font);
 	Score.setString(std::to_string(m_score[Side::LEFT]));
 	Score.setFillColor(sf::Color::White);
-	Score.setPosition(target.getSize().x*0.25f, 10.f);
+	Score.setPosition(target.getSize().x * 0.25f, 10.f);
 	Score.setStyle(sf::Text::Bold);
 	target.draw(Score);
 
 	Score.setString(std::to_string(m_score[Side::RIGHT]));
-	Score.setPosition(target.getSize().x*0.75f, 10.f);
+	Score.setPosition(target.getSize().x * 0.75f, 10.f);
 	target.draw(Score);
 }
 

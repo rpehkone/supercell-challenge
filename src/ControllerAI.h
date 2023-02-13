@@ -4,12 +4,15 @@
 
 #include "Controller.h"
 
-namespace sf { class Clock; }
+namespace sf
+{
+	class Clock;
+}
 
 class ControllerAI : public Controller
 {
 public:
-	ControllerAI(Game* pGame, Paddle* pPaddle);
+	ControllerAI(Game *pGame, Paddle *pPaddle);
 	~ControllerAI();
 
 	virtual bool initialise() override;

@@ -9,7 +9,7 @@ class Game;
 class Paddle : public sf::Drawable, public sf::Transformable
 {
 public:
-	Paddle(Game* pGame);
+	Paddle(Game *pGame);
 	~Paddle();
 
 	bool initialise(Side side);
@@ -21,6 +21,6 @@ public:
 	void move(float yDelta);
 
 private:
-	Game* m_pGame;
+	Game *m_pGame;
 	Side m_side;
 };

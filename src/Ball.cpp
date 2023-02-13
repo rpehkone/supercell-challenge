@@ -9,7 +9,7 @@
 #include "Game.h"
 #include "Ball.h"
 
-Ball::Ball(Game* pGame)
+Ball::Ball(Game *pGame)
 	: m_pGame(pGame)
 {
 }
@@ -33,34 +33,34 @@ void Ball::update(float deltaTime)
 
 	// check ball against boundaries of the pitch
 	sf::Vector2f lastPosition = getPosition();
-	sf::Vector2f newPosition = lastPosition + m_velocity*deltaTime;
+	sf::Vector2f newPosition = lastPosition + m_velocity * deltaTime;
 
 	const sf::Vector2f pitchSize = m_pGame->getPitch()->getPitchSize();
 
-	float ballTopPosition = newPosition.y-BallRadius;
+	float ballTopPosition = newPosition.y - BallRadius;
 	if (ballTopPosition < 0.f)
 	{
-		newPosition.y += ballTopPosition*2.f;
+		newPosition.y += ballTopPosition * 2.f;
 		m_velocity.y = -m_velocity.y;
 	}
 
-	float ballBottomPosition = newPosition.y+BallRadius;
+	float ballBottomPosition = newPosition.y + BallRadius;
 	if (ballBottomPosition > pitchSize.y)
 	{
-		newPosition.y -= (ballBottomPosition-pitchSize.y)*2.f;
+		newPosition.y -= (ballBottomPosition - pitchSize.y) * 2.f;
 		m_velocity.y = -m_velocity.y;
 	}
 
-	newPosition.y = std::clamp(newPosition.y, 0.01f+BallRadius, pitchSize.y-0.01f-BallRadius);
+	newPosition.y = std::clamp(newPosition.y, 0.01f + BallRadius, pitchSize.y - 0.01f - BallRadius);
 
 	// check ball against paddles
-	const Side sideToTest = (newPosition.x < pitchSize.x*0.5f) ? Side::LEFT : Side::RIGHT;
-	const Paddle* pPaddleToTest = m_pGame->getPaddle(sideToTest);
+	const Side sideToTest = (newPosition.x < pitchSize.x * 0.5f) ? Side::LEFT : Side::RIGHT;
+	const Paddle *pPaddleToTest = m_pGame->getPaddle(sideToTest);
 	const sf::FloatRect paddleRect = pPaddleToTest->getRect();
 
 	const sf::Vector2f closestPointOnPaddle(
-				std::clamp(newPosition.x, paddleRect.left, paddleRect.left+paddleRect.width),
-				std::clamp(newPosition.y, paddleRect.top, paddleRect.top+paddleRect.height));
+		std::clamp(newPosition.x, paddleRect.left, paddleRect.left + paddleRect.width),
+		std::clamp(newPosition.y, paddleRect.top, paddleRect.top + paddleRect.height));
 	const sf::Vector2f paddleToBall = newPosition - closestPointOnPaddle;
 	const bool intersects = VecLength(paddleToBall) < BallRadius;
 	if (intersects)
@@ -76,12 +76,12 @@ void Ball::update(float deltaTime)
 
 	// set the position and check for a goal
 	setPosition(newPosition);
-	
-	if (newPosition.x+BallRadius < 0.f)
+
+	if (newPosition.x + BallRadius < 0.f)
 	{
 		m_pGame->scoreGoal(Side::RIGHT);
 	}
-	else if (newPosition.x-BallRadius > pitchSize.x)
+	else if (newPosition.x - BallRadius > pitchSize.x)
 	{
 		m_pGame->scoreGoal(Side::LEFT);
 	}
@@ -94,18 +94,18 @@ void Ball::draw(sf::RenderTarget &target, sf::RenderStates states) const
 		// don't render the ball when we wait.
 		return;
 	}
-	
+
 	sf::CircleShape circle(BallRadius, BallPoints);
 	circle.setFillColor(sf::Color::White);
-	circle.setPosition(getPosition()-sf::Vector2f(BallRadius, BallRadius));
+	circle.setPosition(getPosition() - sf::Vector2f(BallRadius, BallRadius));
 	target.draw(circle);
 }
 
 void Ball::fireFromCenter()
 {
 	sf::Vector2f pitchSize = m_pGame->getPitch()->getPitchSize();
-	setPosition(pitchSize*0.5f);
-	
+	setPosition(pitchSize * 0.5f);
+
 	// choose random direction
 	float randomAngle = (rand() % 1000) * 0.001f * 3.14159265359f * 2.f;
 	m_velocity.x = sinf(randomAngle) * FiringSpeed;

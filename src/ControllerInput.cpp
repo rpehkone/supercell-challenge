@@ -1,9 +1,8 @@
 #include "ControllerInput.h"
 #include "Paddle.h"
 
-ControllerInput::ControllerInput(Game* pGame, Paddle* pPaddle)
-	: Controller(pGame, pPaddle)
-	, m_movingUp(false)
+ControllerInput::ControllerInput(Game *pGame, Paddle *pPaddle)
+	: Controller(pGame, pPaddle), m_movingUp(false)
 {
 }
 
@@ -15,11 +14,11 @@ void ControllerInput::update(float deltaTime)
 {
 	if (m_movingUp)
 	{
-		m_pPaddle->move(-PaddleMoveSpeed*deltaTime);
+		m_pPaddle->move(-PaddleMoveSpeed * deltaTime);
 	}
 	else if (m_movingDown)
 	{
-		m_pPaddle->move(PaddleMoveSpeed*deltaTime);
+		m_pPaddle->move(PaddleMoveSpeed * deltaTime);
 	}
 }
 

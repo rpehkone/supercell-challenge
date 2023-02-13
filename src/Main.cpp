@@ -6,7 +6,6 @@
 
 void draw_wobble(sf::RenderTarget &target, sf::RenderStates states)
 {
-
 }
 
 int main()
@@ -17,9 +16,9 @@ int main()
 	sf::ContextSettings contextSettings;
 	contextSettings.depthBits = 24;
 	contextSettings.sRgbCapable = sRgb;
-	sf::RenderWindow window(sf::VideoMode(1024, 768), "Pong 3");
+	sf::RenderWindow window(sf::VideoMode(1024, 768), "Pong 2077");
 	window.setKeyRepeatEnabled(false);
-	
+
 	// Create a sprite for the background
 	sf::Texture backgroundTexture;
 	if (!backgroundTexture.loadFromFile("assets/texture.jpg"))
@@ -36,7 +35,6 @@ int main()
 		std::cerr << "Game Failed to initialise" << std::endl;
 		return 1;
 	}
-	
 
 	// run the program as long as the window is open
 	while (window.isOpen())
@@ -45,20 +43,20 @@ int main()
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			switch(event.type)
+			switch (event.type)
 			{
-				case sf::Event::Closed:
-					// "close requested" event: we close the window
-					window.close();
-					break;
-				case sf::Event::KeyPressed:
-					pGame->onKeyPressed(event.key.code);
-					break;
-				case sf::Event::KeyReleased:
-					pGame->onKeyReleased(event.key.code);
-					break;
-				default:
-					break;
+			case sf::Event::Closed:
+				// "close requested" event: we close the window
+				window.close();
+				break;
+			case sf::Event::KeyPressed:
+				pGame->onKeyPressed(event.key.code);
+				break;
+			case sf::Event::KeyReleased:
+				pGame->onKeyReleased(event.key.code);
+				break;
+			default:
+				break;
 			}
 		}
 

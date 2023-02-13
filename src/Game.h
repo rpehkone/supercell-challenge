@@ -14,12 +14,14 @@ class Paddle;
 class Ball;
 class Game;
 class Controller;
-namespace sf { class Clock; }
+namespace sf
+{
+	class Clock;
+}
 
 class Game : public sf::Drawable
 {
 public:
-
 	enum class State
 	{
 		WAITING,
@@ -36,9 +38,9 @@ public:
 	void scoreGoal(Side side);
 
 	State getState() const { return m_state; }
-	const Pitch* getPitch() const { return m_pPitch.get(); }
-	const Ball* getBall() const { return m_pBall.get(); }
-	const Paddle* getPaddle(Side side) const { return m_pPaddles[(int)side].get(); }
+	const Pitch *getPitch() const { return m_pPitch.get(); }
+	const Ball *getBall() const { return m_pBall.get(); }
+	const Paddle *getPaddle(Side side) const { return m_pPaddles[(int)side].get(); }
 
 	void onKeyPressed(sf::Keyboard::Key key);
 	void onKeyReleased(sf::Keyboard::Key key);

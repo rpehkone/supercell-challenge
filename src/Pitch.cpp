@@ -3,7 +3,7 @@
 #include "Constants.h"
 #include "Pitch.h"
 
-Pitch::Pitch(Game* pGame)
+Pitch::Pitch(Game *pGame)
 	: m_pGame(pGame)
 {
 }
