@@ -42,9 +42,21 @@ void ControllerAI::update(float deltaTime)
 
 	if (m_pClock->getElapsedTime().asSeconds() >= m_currentReactionTime)
 	{
+		int ballidx = 0;
+		if (game->m_numBalls == 2)
+		{
+			//find witch ball is closer to ai
+			const sf::Vector2f &bpos1 = game->getBall(0)->getPos();
+			const sf::Vector2f &bpos2 = game->getBall(1)->getPos();
+			if (bpos1.x < bpos2.x)
+				ballidx = 1;
+			std::cout << ballidx << " ball\n";
+		}
+
 		const sf::Vector2f &pitchSize = game->getPitch()->getPitchSize();
-		const sf::Vector2f &bvel = game->getBall()->getVel();
-		const sf::Vector2f &bpos = game->getBall()->getPos();
+		const sf::Vector2f &bvel = game->getBall(ballidx)->getVel();
+		const sf::Vector2f &bpos = game->getBall(ballidx)->getPos();
+
 		float timeToHit = (game->getPitch()->getPitchSize().x - bpos.x) / bvel.x;
 		m_targetLocationY = bpos.y + bvel.y * timeToHit;
 		m_pClock->restart();

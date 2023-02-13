@@ -39,7 +39,7 @@ public:
 
 	State getState() const { return m_state; }
 	const Pitch *getPitch() const { return m_pPitch.get(); }
-	const Ball *getBall() const { return m_pBall.get(); }
+	const Ball *getBall(int i) const { return m_pBall[i].get(); }
 	const Paddle *getPaddle(Side side) const { return m_pPaddles[(int)side].get(); }
 
 	void onKeyPressed(sf::Keyboard::Key key);
@@ -48,9 +48,10 @@ public:
 	sf::Clock clock;
 	int m_score[2];
 
+	int	m_numBalls;
 private:
 	std::unique_ptr<Pitch> m_pPitch;
-	std::unique_ptr<Ball> m_pBall;
+	std::unique_ptr<Ball> m_pBall[2];
 	State m_state;
 	std::unique_ptr<sf::Clock> m_pClock;
 

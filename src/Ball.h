@@ -15,7 +15,7 @@ public:
 	void update(float deltaTime);
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
-	void fireFromCenter();
+	void fireFromCenter(bool go_left);
 	const sf::Vector2f &getVel() const { return m_velocity; };
 	const sf::Vector2f &getPos() const { return getPosition(); };
 

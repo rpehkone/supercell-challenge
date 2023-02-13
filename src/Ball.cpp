@@ -104,14 +104,14 @@ void Ball::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	target.draw(circle);
 }
 
-void Ball::fireFromCenter()
+void Ball::fireFromCenter(bool go_left)
 {
 	sf::Vector2f pitchSize = m_pGame->getPitch()->getPitchSize();
 	setPosition(pitchSize * 0.5f);
 
-	m_velocity.x = 500.0f;
-	if (rand() % 2)
+	m_velocity.x = 600.0f;
+	if (!go_left)
 		m_velocity.x *= -1.0;
-	m_velocity.y = RandFloat(1000.0f);
+	m_velocity.y = RandFloat(800.0f);
 	VecSetLen(m_velocity, FiringSpeed);
 }

@@ -45,3 +45,8 @@ inline float RandFloat(float max)
 	res *= max;
 	return res;
 }
+
+inline bool RandBool()
+{
+	return (bool)(rand() % 2);
+}

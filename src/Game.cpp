@@ -8,14 +8,19 @@
 #include "resources/Resources.h"
 #include "ControllerInput.h"
 #include "ControllerAI.h"
+#include "MathUtils.h"
 #include "Paddle.h"
 #include "Pitch.h"
 #include "Game.h"
 #include "Ball.h"
 
 Game::Game()
-	: m_pPitch(std::make_unique<Pitch>(this)), m_pBall(std::make_unique<Ball>(this)), m_state(State::WAITING), m_pClock(std::make_unique<sf::Clock>()), music(std::make_unique<sf::Music>()), wobble(std::make_unique<sf::Shader>())
+	: m_pPitch(std::make_unique<Pitch>(this)), m_state(State::WAITING), m_pClock(std::make_unique<sf::Clock>()), music(std::make_unique<sf::Music>()), wobble(std::make_unique<sf::Shader>())
 {
+	m_pBall[0] = std::make_unique<Ball>(this);
+	m_pBall[1] = std::make_unique<Ball>(this);
+	m_numBalls = 1;
+
 	m_pPaddles[Side::LEFT] = std::make_unique<Paddle>(this);
 	m_pPaddles[Side::RIGHT] = std::make_unique<Paddle>(this);
 
@@ -43,7 +48,9 @@ bool Game::initialise(sf::Vector2f pitchSize)
 		return false;
 	if (!m_controllers[Side::RIGHT]->initialise())
 		return false;
-	if (!m_pBall->initialise())
+	if (!m_pBall[0]->initialise())
+		return false;
+	if (!m_pBall[1]->initialise())
 		return false;
 
 	m_pClock->restart();
@@ -59,9 +66,12 @@ bool Game::initialise(sf::Vector2f pitchSize)
 	{
 		std::cout << "music failed to load\n";
 	}
-	music->setVolume(2); // reduce the volume
-	music->setLoop(true);
-	music->play();
+	else
+	{
+		music->setVolume(2); // reduce the volume
+		music->setLoop(true);
+		music->play();
+	}
 
 	if (!wobble->loadFromFile("assets/wobble.frag", sf::Shader::Fragment))
 		;
@@ -77,7 +87,14 @@ void Game::update(float deltaTime)
 	{
 		if (m_pClock->getElapsedTime().asSeconds() >= 3.f)
 		{
-			m_pBall->fireFromCenter();
+			//if played 5 rounds spawn 2 balls
+			bool both = (bool)((m_score[0] + m_score[1]) >= 4);
+			m_numBalls = 1 + (int)both;
+			bool dir = RandBool();
+			m_pBall[0]->fireFromCenter(dir);
+			//and fire second ball in opposite direction
+			if (both)
+				m_pBall[1]->fireFromCenter(!dir);
 			m_state = State::ACTIVE;
 		}
 		break;
@@ -90,7 +107,8 @@ void Game::update(float deltaTime)
 	m_pPaddles[Side::RIGHT]->update(deltaTime);
 	m_controllers[Side::LEFT]->update(deltaTime);
 	m_controllers[Side::RIGHT]->update(deltaTime);
-	m_pBall->update(deltaTime);
+	for (int i = 0; i < m_numBalls; i++)
+		m_pBall[i]->update(deltaTime);
 }
 
 void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -119,7 +137,8 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	Score.setString(std::to_string(m_score[Side::RIGHT]));
 	target.draw(Score);
 
-	target.draw(*m_pBall.get());
+	for (int i = 0; i < m_numBalls; i++)
+		target.draw(*m_pBall[i].get());
 }
 
 void Game::scoreGoal(Side side)
