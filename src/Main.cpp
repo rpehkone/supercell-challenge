@@ -152,7 +152,7 @@ int main()
 		aiSprite.setScale(winsize);
 		offset.x /= 10.0f;
 		playerSprite.setPosition(sf::Vector2f(offset.x, 0));
-		aiSprite.setPosition(sf::Vector2f(offset.x, 0));
+		aiSprite.setPosition(sf::Vector2f(-offset.x, 0));
 		window.draw(playerSprite);
 		window.draw(aiSprite);
 

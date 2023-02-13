@@ -1,5 +1,7 @@
 building: `cmake -B ./build -G "Visual Studio 17 2022"`  
 
+<img src="pong.gif" width="500" height="auto"/>  
+
 move with arrow up & down  
 
 ball velocity increases on every bounce  
