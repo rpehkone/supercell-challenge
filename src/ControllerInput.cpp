@@ -2,7 +2,7 @@
 #include "Paddle.h"
 
 ControllerInput::ControllerInput(Game *pGame, Paddle *pPaddle)
-	: Controller(pGame, pPaddle), m_movingUp(false)
+	: Controller(pGame, pPaddle), m_movingUp(false), m_movingDown(false)
 {
 }
 

@@ -1,4 +1,6 @@
-building: `cmake -B./build -G"Visual Studio 17 2022"`  
+building: `cmake -B ./build -G "Visual Studio 17 2022"`  
+
+move with arrow up & down  
 
 ball velocity increases on every bounce  
 2 balls are spawned after 4 rounds  

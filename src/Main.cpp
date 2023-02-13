@@ -9,34 +9,20 @@
 #include "MathUtils.h"
 #include "Game.h"
 
-void draw_visualizer(sf::RenderWindow& window, double freq[4])
+void draw_visualizer(sf::RenderWindow& window, double freq[64])
 {
 	sf::RectangleShape rectangle;
-	rectangle.setFillColor(sf::Color(0x41034480));
-	float maxMove = 50.0f;
-	float size;
+	rectangle.setFillColor(sf::Color(0xa57f4588));
+	float maxMove = 100.0f;
 
-	size = maxMove * (float)freq[0];
-	rectangle.setSize(sf::Vector2f((float)window.getSize().x, -size));
-	rectangle.setPosition(0, 0);
-	window.draw(rectangle);
-
-	size = maxMove * (float)freq[3];
-	rectangle.setSize(sf::Vector2f((float)window.getSize().x, size));
-	rectangle.setPosition(0, (float)window.getSize().y);
-	window.draw(rectangle);
-
-/*
-	size = maxMove * (float)freq[2];
-	rectangle.setSize(sf::Vector2f(-size, window.getSize().y));
-	rectangle.setPosition(0, 0);
-	window.draw(rectangle);
-
-	size = maxMove * (float)freq[3];
-	rectangle.setSize(sf::Vector2f(size, window.getSize().y));
-	rectangle.setPosition(window.getSize().x, 0);
-	window.draw(rectangle);
-*/
+	float stepw = (float)window.getSize().y / 30.0f;
+	for (int i = 0; i < 64; i++)
+	{
+		float height = maxMove * (float)freq[i];
+		rectangle.setSize(sf::Vector2f(stepw, height));
+		rectangle.setPosition(stepw * i, (float)window.getSize().y);
+		window.draw(rectangle);
+	}
 }
 
 int main()
@@ -86,12 +72,11 @@ int main()
 		std::vector< std::vector <double> >& frequencyVisualizationVector = audioViz.getfrequencyVisualizationVector();
 		double songPlayingOffset = audioViz.getSongPlayingOffset();
 		int frequencyFrame = (int)(songPlayingOffset * 30);
-		double this_freq[4] = {0,0,0,0};
-		int freqBlockIdx = 2;
-		for (int i = 0; i < 4; i++)
+		double this_freq[64];
+		for (int i = 0; i < 64; i++)
 		{
 			if (frequencyFrame < frequencyVisualizationVector.size())
-				this_freq[i] = frequencyVisualizationVector[frequencyFrame][freqBlockIdx * i] * -1;
+				this_freq[i] = frequencyVisualizationVector[frequencyFrame][i] * -1;
 			this_freq[i] /= 150.0f;
 			this_freq[i] = min(this_freq[i], 1.0f);
 		}
