@@ -7,6 +7,7 @@
 #include <SFML/Audio.hpp>
 #include <memory>
 
+#include "AudioVisual.h"
 #include "Constants.h"
 
 class Pitch;
@@ -49,6 +50,8 @@ public:
 	int m_score[2];
 
 	int	m_numBalls;
+	// AudioVisual m_audioVisual;
+
 private:
 	std::unique_ptr<Pitch> m_pPitch;
 	std::unique_ptr<Ball> m_pBall[2];
@@ -58,7 +61,6 @@ private:
 	std::unique_ptr<Paddle> m_pPaddles[2];
 	std::unique_ptr<Controller> m_controllers[2];
 
-	std::unique_ptr<sf::Music> music;
 	std::unique_ptr<sf::Shader> wobble;
 
 

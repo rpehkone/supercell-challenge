@@ -50,7 +50,6 @@ void ControllerAI::update(float deltaTime)
 			const sf::Vector2f &bpos2 = game->getBall(1)->getPos();
 			if (bpos1.x < bpos2.x)
 				ballidx = 1;
-			std::cout << ballidx << " ball\n";
 		}
 
 		const sf::Vector2f &pitchSize = game->getPitch()->getPitchSize();

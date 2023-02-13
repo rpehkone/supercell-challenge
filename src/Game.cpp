@@ -4,10 +4,12 @@
 #include <SFML/System.hpp>
 #include <filesystem>
 #include <iostream>
+#include <thread>
 
 #include "resources/Resources.h"
 #include "ControllerInput.h"
 #include "ControllerAI.h"
+#include "AudioVisual.h"
 #include "MathUtils.h"
 #include "Paddle.h"
 #include "Pitch.h"
@@ -15,7 +17,7 @@
 #include "Ball.h"
 
 Game::Game()
-	: m_pPitch(std::make_unique<Pitch>(this)), m_state(State::WAITING), m_pClock(std::make_unique<sf::Clock>()), music(std::make_unique<sf::Music>()), wobble(std::make_unique<sf::Shader>())
+	: m_pPitch(std::make_unique<Pitch>(this)), m_state(State::WAITING), m_pClock(std::make_unique<sf::Clock>()), wobble(std::make_unique<sf::Shader>())
 {
 	m_pBall[0] = std::make_unique<Ball>(this);
 	m_pBall[1] = std::make_unique<Ball>(this);
@@ -29,6 +31,7 @@ Game::Game()
 
 	m_score[Side::LEFT] = 0;
 	m_score[Side::RIGHT] = 0;
+
 }
 
 Game::~Game()
@@ -62,25 +65,28 @@ bool Game::initialise(sf::Vector2f pitchSize)
 		return false;
 	}
 
-	if (!music->openFromFile("assets/synthwave80s.ogg"))
-	{
-		std::cout << "music failed to load\n";
-	}
-	else
-	{
-		music->setVolume(2); // reduce the volume
-		music->setLoop(true);
-		music->play();
-	}
-
-	if (!wobble->loadFromFile("assets/wobble.frag", sf::Shader::Fragment))
-		;
+	// if (!wobble->loadFromFile("assets/wobble.frag", sf::Shader::Fragment))
+	// 	;
 
 	return true;
 }
 
 void Game::update(float deltaTime)
 {
+	// std::vector< std::vector <double> >& frequencyVisualizationVector = m_audioVisual.getfrequencyVisualizationVector();
+	// double songPlayingOffset = m_audioVisual.getSongPlayingOffset();
+	// int frequencyFrame = (int)(songPlayingOffset * 30);
+	// double this_freq = 0;
+	// int asd = 3;
+	// std::cout << this_freq << "\n";
+	// if (frequencyFrame < frequencyVisualizationVector.size())
+	// {
+	// 	this_freq = frequencyVisualizationVector[frequencyFrame][asd] * -1;
+	// 	// for (int a = 0; a < 5; a++)
+	// 	// for (int b = 0; b < 5; b++)
+	// 	// 	std::cout << frequencyVisualizationVector[a][b] << " f\n";
+	// }
+
 	switch (m_state)
 	{
 	case State::WAITING:
