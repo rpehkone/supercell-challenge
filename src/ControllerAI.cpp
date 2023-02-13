@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <SFML/System.hpp>
 #include "Game.h"
+#include "Ball.h"
 #include "Pitch.h"
 #include "Paddle.h"
 #include <math.h>
@@ -29,8 +30,12 @@ void ControllerAI::update(float deltaTime)
 {
     if (m_pClock->getElapsedTime().asSeconds() >= 1.f)
     {
-        const sf::Vector2f& pitchSize = m_pGame->getPitch()->getPitchSize();
-        m_targetLocationY = (rand() % 100)*0.01f * (pitchSize.y-m_pPaddle->getPaddleHeight());
+        Game* game = getGame();
+        const sf::Vector2f& pitchSize = game->getPitch()->getPitchSize();
+        // m_targetLocationY = (rand() % 100)*0.01f * (pitchSize.y-m_pPaddle->getPaddleHeight());
+        const sf::Vector2f& bvel = game->getBall()->getVel();
+        const sf::Vector2f& bpos = game->getBall()->getPos();
+        m_targetLocationY = bpos.y;
         m_pClock->restart();
     }
 

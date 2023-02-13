@@ -6,6 +6,7 @@
 #include "Paddle.h"
 #include "MathUtils.h"
 #include <math.h>
+#include <iostream>
 
 #include "Constants.h"
 
@@ -68,8 +69,14 @@ void Ball::update(float deltaTime)
     if (intersects)
     {
         m_velocity.x = sideToTest == Side::LEFT ? fabs(m_velocity.x) : -fabs(m_velocity.x);
+        in_collision = true;
     }
-    
+    else if (in_collision)
+    {
+        in_collision = false;
+        VecMul(m_velocity, 1.05);
+    }
+
     // set the position and check for a goal
     setPosition(newPosition);
     

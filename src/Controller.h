@@ -10,12 +10,13 @@ class Controller
 public:
     Controller(Game* pGame, Paddle* pPaddle) : m_pGame(pGame), m_pPaddle(pPaddle) {}
     virtual ~Controller() {}
-    
+
     virtual bool initialise(){ return true; };
     virtual void update(float deltaTime) {};
     virtual void onKeyPressed(sf::Keyboard::Key key) {};
     virtual void onKeyReleased(sf::Keyboard::Key key) {};
-    
+
+    Game* getGame(){return m_pGame;};
 protected:
     Game* m_pGame;
     Paddle* m_pPaddle;

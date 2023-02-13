@@ -34,6 +34,7 @@ public:
     
     State getState() const { return m_state; }
     const Pitch* getPitch() const { return m_pPitch.get(); }
+    const Ball* getBall() const { return m_pBall.get(); }
     const Paddle* getPaddle(Side side) const { return m_pPaddles[(int)side].get(); }
     
     void onKeyPressed(sf::Keyboard::Key key);
