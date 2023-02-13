@@ -103,16 +103,21 @@ void Game::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	// wobble.setUniform("iTime", clock.getElapsedTime().asSeconds());
 
 	// draw the score
+	int center = target.getSize().x / 2.0;
+
 	sf::Text Score;
 	Score.setFont(m_font);
-	Score.setString(std::to_string(m_score[Side::LEFT]));
-	Score.setFillColor(sf::Color::White);
-	Score.setPosition(target.getSize().x * 0.25f, 10.f);
 	Score.setStyle(sf::Text::Bold);
+	Score.setCharacterSize(100);
+
+	Score.setPosition(center - 150, 10.f);
+	Score.setFillColor(sf::Color(0xffffff50));
+	Score.setString(std::to_string(m_score[Side::LEFT]));
 	target.draw(Score);
 
+	Score.setPosition(center + 90, 10.f);
+	Score.setFillColor(sf::Color(0xffffff50));
 	Score.setString(std::to_string(m_score[Side::RIGHT]));
-	Score.setPosition(target.getSize().x * 0.75f, 10.f);
 	target.draw(Score);
 }
 
@@ -121,6 +126,7 @@ void Game::scoreGoal(Side side)
 	m_state = State::WAITING;
 	m_pClock->restart();
 	m_score[side]++;
+	m_controllers[Side::RIGHT]->initialise();
 }
 
 void Game::onKeyPressed(sf::Keyboard::Key key)

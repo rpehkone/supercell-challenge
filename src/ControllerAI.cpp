@@ -1,8 +1,10 @@
 #include <SFML/System.hpp>
 #include <algorithm>
+#include <iostream>
 #include <math.h>
 
 #include "ControllerAI.h"
+#include "MathUtils.h"
 #include "Paddle.h"
 #include "Pitch.h"
 #include "Game.h"
@@ -20,20 +22,31 @@ ControllerAI::~ControllerAI()
 bool ControllerAI::initialise()
 {
 	m_pClock = std::make_unique<sf::Clock>();
+	Game *game = getGame();
+
+	//how many points player is leading
+	int playerLeadsBy = (game->m_score[0] + 0) - game->m_score[1];
+	//make ai react faster when player is in lead
+	m_currentReactionTime = InitialAiReactionTime - playerLeadsBy * AiReactionTimeStepSize;
+	m_currentReactionTime = max(m_currentReactionTime, 0);
+#ifdef _DEBUG
+	std::cout << playerLeadsBy << " " << m_currentReactionTime << " Init ai\n";
+#endif
 	m_targetLocationY = 0.f;
 	return true;
 }
 
 void ControllerAI::update(float deltaTime)
 {
-	if (m_pClock->getElapsedTime().asSeconds() >= 1.f)
+	Game *game = getGame();
+
+	if (m_pClock->getElapsedTime().asSeconds() >= m_currentReactionTime)
 	{
-		Game *game = getGame();
 		const sf::Vector2f &pitchSize = game->getPitch()->getPitchSize();
-		// m_targetLocationY = (rand() % 100)*0.01f * (pitchSize.y-m_pPaddle->getPaddleHeight());
 		const sf::Vector2f &bvel = game->getBall()->getVel();
 		const sf::Vector2f &bpos = game->getBall()->getPos();
-		m_targetLocationY = bpos.y;
+		float timeToHit = (game->getPitch()->getPitchSize().x - bpos.x) / bvel.x;
+		m_targetLocationY = bpos.y + bvel.y * timeToHit;
 		m_pClock->restart();
 	}
 
@@ -41,7 +54,7 @@ void ControllerAI::update(float deltaTime)
 	const float offsetFromTarget = m_targetLocationY - paddlePositionY;
 	if (fabs(offsetFromTarget) > 1.f)
 	{
-		const float maxMovement = PaddleMoveSpeed * deltaTime;
+		const float maxMovement = AiPaddleMoveSpeed * deltaTime;
 		const float movement = std::min(fabs(offsetFromTarget), maxMovement);
 		m_pPaddle->move(offsetFromTarget < 0.f ? -movement : movement);
 	}

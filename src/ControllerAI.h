@@ -21,4 +21,5 @@ public:
 private:
 	std::unique_ptr<sf::Clock> m_pClock;
 	float m_targetLocationY;
+	float m_currentReactionTime;
 };

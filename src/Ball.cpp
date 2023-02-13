@@ -110,6 +110,8 @@ void Ball::fireFromCenter()
 	setPosition(pitchSize * 0.5f);
 
 	m_velocity.x = 500.0f;
+	if (rand() % 2)
+		m_velocity.x *= -1.0;
 	m_velocity.y = RandFloat(1000.0f);
 	VecSetLen(m_velocity, FiringSpeed);
 }

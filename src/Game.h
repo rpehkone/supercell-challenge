@@ -46,6 +46,7 @@ public:
 	void onKeyReleased(sf::Keyboard::Key key);
 
 	sf::Clock clock;
+	int m_score[2];
 
 private:
 	std::unique_ptr<Pitch> m_pPitch;
@@ -59,7 +60,6 @@ private:
 	std::unique_ptr<sf::Music> music;
 	std::unique_ptr<sf::Shader> wobble;
 
-	int m_score[2];
 
 	sf::Font m_font;
 };
