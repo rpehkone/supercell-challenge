@@ -1,4 +1,5 @@
 building: `cmake -B ./build -G "Visual Studio 17 2022"`  
+this project is using SFML (Simple and Fast Multimedia Library)  
 
 <img src="pong.gif" width="500" height="auto"/>  
 
